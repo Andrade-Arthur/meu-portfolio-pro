@@ -20,8 +20,8 @@ def index():
             {"num": "03", "titulo": "Execução", "desc": "Interfaces modernas e alta performance."}
         ],
         "projetos": [
-            {"t": "Horror Game First Person", "d": "Projeto solo de um jogo de terror utilizando GDScript (baseado em Python).", "tag": "BACKEND / GAME DEV", "link": "https://github.com/Andrade-Arthur/Horror-game", "img": "GAME.jpg"},
-            {"t": "Gestão Hospitalar", "d": "Simulação de modernização tecnológica de uma clínica médica com Python.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/ads-gestao-hospitalar", "img": "GH.jpg"},
+            {"t": "Horror Game First Person", "d": "Um Projeto First Person criado com o tema horror utilizando GD SCRIPT.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/Horror-game", "img": "GAME.jpg"},
+            {"t": "Gestão Hospitalar", "d": "Simulação de modernização tecnológica de uma clínica médica.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/ads-gestao-hospitalar", "img": "GH.jpg"},
             {"t": "Usabilidade e Redes", "d": "Aplicação de metodologias ágeis e infraestrutura de redes locais.", "tag": "REDES", "link": "https://github.com/Andrade-Arthur/ads-usabilidade-redes", "img": "redes.jpg"}
         ],
         "skills": {
@@ -50,10 +50,6 @@ def index():
         }
     }
     return render_template('index.html', d=dados)
-
-@app.route('/protocolo-tecnico')
-def protocolo():
-    return render_template('curriculo_vivo.html', d=dados)
 
 if __name__ == '__main__':
     app.run(debug=True)

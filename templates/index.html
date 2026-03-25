@@ -50,7 +50,6 @@
         .loader-ring { width: 40px; height: 40px; border: 2px solid rgba(255,255,255,0.1); border-top: 2px solid #fff; border-radius: 50%; animation: spin 2s linear infinite; margin-bottom: 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* ANIMAÇÃO DOS BOTÕES CV */
         .btn-cv { 
             position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             background-color: #fff; color: #000;
@@ -91,7 +90,7 @@
                 <a href="#" class="nav-link">HOME</a>
                 <a href="#skills" class="nav-link">SKILLS</a>
                 <a href="#projects" class="nav-link">PROJECTS</a>
-                <a href="/protocolo-tecnico" class="nav-link">RESUME</a>
+                <a href="#" class="nav-link">ABOUT</a>
             </nav>
             <a href="mailto:{{ d.email }}?subject=Contato%20via%20Portfolio" class="btn-cv border border-white/20 px-5 py-2 rounded-full text-[9px] font-bold tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-3 uppercase">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -108,14 +107,7 @@
                 <p class="text-gray-400 mb-12 max-w-md text-xl font-light leading-relaxed opacity-80 hero-bio">{{ d.bio }}</p>
                 
                 <div class="flex flex-wrap gap-6 items-center">
-                    <!-- BOTÃO PROTOCOLO TÉCNICO (AGORA BRANCO) -->
-                    <a href="http://127.0.0.1:5501/index.html" target="_blank" 
-                       class="btn-cv font-bold px-10 py-5 rounded-full text-xs uppercase tracking-widest">
-                        Protocolo Técnico
-                    </a>
-                    
-                    <!-- BOTÃO DOWNLOAD CV -->
-                    <a href="{{ url_for('static', filename='curriculo.pdf') }}" download 
+                    <a href="{{ url_for('static', filename='CV- Arthur Andrade.pdf') }}" download 
                        class="btn-cv font-bold px-10 py-5 rounded-full text-xs uppercase tracking-widest">
                         Download CV
                     </a>
