@@ -1,0 +1,53 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    dados = {
+        "nome": "Arthur",
+        "cargo": "Desenvolvedor Fullstack", # Título estratégico
+        "bio": "Especialista em construir arquiteturas robustas e interfaces fluidas em meio ao vácuo digital. Focado em escalabilidade, performance e código limpo.",
+         "email": "contactmeaaprofile@gmail.com", # <--- ADICIONE SEU E-MAIL AQUI
+        "link_github": "https://github.com/Andrade-Arthur",
+        "link_linkedin": "https://www.linkedin.com/in/arthur-andrade-5988133b6/",
+        "experiencia": "02+",
+        "projetos_concluidos": "15+",
+        "clientes": "10+",
+        "processo": [
+            {"num": "01", "titulo": "Requisitos", "desc": "Análise profunda das necessidades."},
+            {"num": "02", "titulo": "Arquitetura", "desc": "Design de sistemas escaláveis."},
+            {"num": "03", "titulo": "Execução", "desc": "Interfaces modernas e alta performance."}
+        ],
+        "projetos": [
+            {"t": "Horror Game First Person", "d": "Um Projeto First Person (Primeira Pessoa) criado com o tema horro utilizando GD SCRIPT Semelhannte ao Python.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/Horror-game", "img": "GAME.jpg"},
+            {"t": "Gestão Hopitalar", "d": "Este projeto integrado simula a modernização tecnológica de uma clínica médica, utilizando Python.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/ads-gestao-hospitalar", "img": "GH.jpg"},
+            {"t": "Usabilidade e Redes", "d": "O trabalho demonstra a aplicação prática de metodologias ágeis, análise de experiência do usuário (UX) e infraestrutura de redes locais.", "tag": "REDES", "link": "https://github.com/Andrade-Arthur/ads-usabilidade-redes", "img": "redes.jpg"},
+            {"t": "projetos futuros...", "d": "...", "tag": "BACK AND FRONT", "link": "#", "img": ""}
+        ],
+        "skills": {
+            "Backend": [
+                {"n": "Python", "i": "python-plain"},
+                {"n": "Flask", "i": "flask-original"},
+                {"n": "Django", "i": "django-plain"},
+                {"n": "PostgreSQL", "i": "postgresql-plain"},
+                {"n": "Node.js", "i": "nodejs-plain"}
+            ],
+            "Frontend": [
+                {"n": "React", "i": "react-original"},
+                {"n": "Tailwind", "i": "tailwindcss-original"},
+                {"n": "TypeScript", "i": "typescript-plain"},
+                {"n": "Next.js", "i": "nextjs-original"}
+            ],
+            "Ferramentas": [
+                {"n": "Docker", "i": "docker-plain"},
+                {"n": "Git", "i": "git-plain"},
+                {"n": "AWS", "i": "amazonwebservices-plain-wordmark"},
+                {"n": "Linux", "i": "linux-plain"}
+            ]
+        }
+    }
+    return render_template('index.html', d=dados)
+
+if __name__ == '__main__':
+    app.run(debug=True)
