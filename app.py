@@ -6,9 +6,9 @@ app = Flask(__name__)
 def index():
     dados = {
         "nome": "Arthur",
-        "cargo": "Desenvolvedor Fullstack", # Título estratégico
+        "cargo": "Desenvolvedor Fullstack",
+        "email": "contactmeaaprofile@gmail.com",
         "bio": "Especialista em construir arquiteturas robustas e interfaces fluidas em meio ao vácuo digital. Focado em escalabilidade, performance e código limpo.",
-         "email": "contactmeaaprofile@gmail.com", # <--- ADICIONE SEU E-MAIL AQUI
         "link_github": "https://github.com/Andrade-Arthur",
         "link_linkedin": "https://www.linkedin.com/in/arthur-andrade-5988133b6/",
         "experiencia": "02+",
@@ -22,8 +22,7 @@ def index():
         "projetos": [
             {"t": "Horror Game First Person", "d": "Um Projeto First Person (Primeira Pessoa) criado com o tema horro utilizando GD SCRIPT Semelhannte ao Python.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/Horror-game", "img": "GAME.jpg"},
             {"t": "Gestão Hopitalar", "d": "Este projeto integrado simula a modernização tecnológica de uma clínica médica, utilizando Python.", "tag": "BACKEND", "link": "https://github.com/Andrade-Arthur/ads-gestao-hospitalar", "img": "GH.jpg"},
-            {"t": "Usabilidade e Redes", "d": "O trabalho demonstra a aplicação prática de metodologias ágeis, análise de experiência do usuário (UX) e infraestrutura de redes locais.", "tag": "REDES", "link": "https://github.com/Andrade-Arthur/ads-usabilidade-redes", "img": "redes.jpg"},
-            {"t": "projetos futuros...", "d": "...", "tag": "BACK AND FRONT", "link": "#", "img": ""}
+            {"t": "Usabilidade e Redes", "d": "O trabalho demonstra a aplicação prática de metodologias ágeis, análise de experiência do usuário (UX) e infraestrutura de redes locais.", "tag": "REDES", "link": "https://github.com/Andrade-Arthur/ads-usabilidade-redes", "img": "redes.jpg"}
         ],
         "skills": {
             "Backend": [
