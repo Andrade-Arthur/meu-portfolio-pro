@@ -8,7 +8,7 @@ def index():
         "nome": "Arthur Andrade",
         "cargo": "Desenvolvedor Fullstack",
         "email": "contactmeaaprofile@gmail.com",
-        "bio": "Especialista em construir arquiteturas robustas e interfaces fluidas em meio ao vácuo digital. Focado em escalabilidade, performance e código limpo.",
+        "bio": "Fullstack Engineer focado na arquitetura de sistemas escaláveis e interfaces de alta fidelidade. Especialista em traduzir lógica de backend complexa em soluções resilientes, operando sob os mais rigorosos padrões de Clean Code e performance.",
         "link_github": "https://github.com/Andrade-Arthur",
         "link_linkedin": "https://www.linkedin.com/in/arthur-andrade-5988133b6/",
         "experiencia": "02+",

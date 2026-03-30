@@ -4,18 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ d.nome }} | {{ d.cargo }}</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}?v=8">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}?v=9">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=JetBrains+Mono&display=swap');
         body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; cursor: none; }
-        .space-bg { position: fixed; inset: 0; z-index: -2; background: #000; }
-        .stars { position: fixed; inset: 0; z-index: -1; background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat; opacity: 0.3; animation: space-drift 120s linear infinite; }
+        .space-bg { position: fixed; inset: 0; z-index: -4; background: #000; }
+        .stars { position: fixed; inset: 0; z-index: -3; background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat; opacity: 0.3; animation: space-drift 120s linear infinite; }
         @keyframes space-drift { from { background-position: 0 0; } to { background-position: -10000px 5000px; } }
         
+        /* FOTO NO FUNDO */
+        .profile-bg-layer {
+            position: fixed; top: 0; right: 0; width: 60%; height: 100vh; z-index: -2;
+            background-image: url("{{ url_for('static', filename='perfil.jpg') }}");
+            background-size: cover; background-position: center;
+            background-position: center 15%;
+            filter: grayscale(100%) brightness(0.35); opacity: 0.3; pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 10%, transparent 75%);
+            -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 75%);
+        }
+
         .dust-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
         .dust { position: absolute; background: #fff; border-radius: 50%; width: var(--sz); height: var(--sz); top: var(--t); left: var(--l); filter: blur(1px); animation: drift-dust var(--dur) infinite linear; opacity: 0; }
         @keyframes drift-dust { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 20% { opacity: var(--op); } 80% { opacity: var(--op); } 100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; } }
@@ -36,8 +47,8 @@
         .hero-bio { transition: 0.6s ease; }
         .hero-bio:hover { color: #fff; opacity: 1 !important; transform: translateX(15px); }
 
-        .profile-img { transition: transform 0.3s, filter 1s; filter: grayscale(100%); }
-        .profile-img:hover { filter: grayscale(0%); box-shadow: 0 0 80px rgba(255, 255, 255, 0.1); }
+        .btn-cv { position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background-color: #fff; color: #000; }
+        .btn-cv:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); }
 
         .projects-wrapper { width: 100%; overflow: hidden; position: relative; padding: 60px 0; }
         .projects-container { display: flex; gap: 40px; padding: 0 10vw; will-change: transform; transition: transform 0.1s ease-out; }
@@ -45,19 +56,16 @@
         .project-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #000 20%, transparent 100%); z-index: 1; }
         .project-card:hover { border-color: rgba(255,255,255,0.4); filter: brightness(1.2) grayscale(0); transform: scale(1) translateY(-10px); }
         .project-card > * { position: relative; z-index: 2; }
-
-        .future-card { background: repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 10px, transparent 10px, transparent 20px) !important; border: 1px dashed rgba(255,255,255,0.15) !important; filter: opacity(0.5) !important; }
+        
+        /* CARD FUTURO (RESTAURADO) */
+        .future-card { 
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 10px, transparent 10px, transparent 20px) !important; 
+            border: 1px dashed rgba(255,255,255,0.15) !important; 
+            filter: opacity(0.5) !important;
+        }
+        .future-card:hover { border-style: solid !important; border-color: #fff !important; filter: opacity(1) !important; box-shadow: 0 0 30px rgba(255,255,255,0.1); }
         .loader-ring { width: 40px; height: 40px; border: 2px solid rgba(255,255,255,0.1); border-top: 2px solid #fff; border-radius: 50%; animation: spin 2s linear infinite; margin-bottom: 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .btn-cv { 
-            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            background-color: #fff; color: #000;
-        }
-        .btn-cv:hover { 
-            transform: scale(1.1) translateY(-5px); 
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); 
-        }
 
         .gradient-text { background: linear-gradient(to bottom, #fff 30%, #666 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .card { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); border-radius: 30px; backdrop-filter: blur(10px); transition: transform 0.1s, border-color 0.5s; position: relative; overflow: hidden; transform-style: preserve-3d; }
@@ -69,12 +77,13 @@
 
     <div class="space-bg"></div>
     <div class="stars"></div>
+    <div class="profile-bg-layer"></div>
+
     <div class="dust-container">
         <div class="dust" style="--t:15%; --l:25%; --sz:1px; --dur:22s; --x:60px; --y:-110px; --op:0.4;"></div>
         <div class="dust" style="--t:75%; --l:15%; --sz:1px; --dur:18s; --x:110px; --y:-60px; --op:0.5;"></div>
         <div class="dust" style="--t:45%; --l:45%; --sz:1px; --dur:32s; --x:30px; --y:-130px; --op:0.3;"></div>
         <div class="dust" style="--t:65%; --l:85%; --sz:2px; --dur:38s; --x:-70px; --y:-140px; --op:0.2;"></div>
-        <div class="dust" style="--t:12%; --l:78%; --sz:2px; --dur:40s; --x:-40px; --y:-190px; --op:0.1;"></div>
     </div>
 
     <div id="cursor-glow"></div>
@@ -107,23 +116,17 @@
                 <p class="text-gray-400 mb-12 max-w-md text-xl font-light leading-relaxed opacity-80 hero-bio">{{ d.bio }}</p>
                 
                 <div class="flex flex-wrap gap-6 items-center">
-                    <a href="{{ url_for('static', filename='CV- Arthur Andrade.pdf') }}" download 
-                       class="btn-cv font-bold px-10 py-5 rounded-full text-xs uppercase tracking-widest">
-                        Download CV
-                    </a>
-
+                    <a href="{{ url_for('static', filename='CV Arthur Andrade.pdf') }}" download class="btn-cv font-bold px-10 py-5 rounded-full text-xs uppercase tracking-widest">Download CV</a>
                     <div class="flex gap-8 ml-2">
                         <a href="{{ d.link_github }}" target="_blank" class="text-gray-500 hover:text-white transition-all hover:scale-125"><i class="devicon-github-original text-3xl"></i></a>
                         <a href="{{ d.link_linkedin }}" target="_blank" class="text-gray-500 hover:text-white transition-all hover:scale-125"><i class="devicon-linkedin-plain text-3xl"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/3 profile-container" style="perspective: 1000px;">
-                <img id="profileImg" src="{{ url_for('static', filename='perfil.jpg') }}" class="profile-img relative w-full aspect-[4/5] object-cover rounded-[50px] shadow-2xl border border-white/5">
-            </div>
         </div>
     </section>
 
+    <!-- PROJETOS -->
     <section id="projects" class="py-44 overflow-hidden">
         <div class="px-8 max-w-6xl mx-auto mb-10"><h2 class="text-[9px] tracking-[1.5em] text-gray-700 uppercase">Archive_01 / Projects</h2></div>
         <div class="projects-wrapper" id="projectsWrapper">
@@ -136,11 +139,16 @@
                     <a href="{{ p.link }}" target="_blank" class="text-[10px] tracking-[0.4em] text-white/70 hover:text-white flex items-center gap-2">ACCESS_CORE <i class="devicon-github-original"></i></a>
                 </div>
                 {% endfor %}
+
+                <!-- CARD DE PROJETOS FUTUROS (RESTAURADO) -->
                 <div class="project-card future-card">
                     <div class="loader-ring"></div>
                     <span class="text-[9px] text-white/30 tracking-[0.5em] mb-4 uppercase">Initializing Core...</span>
                     <h3 class="text-4xl font-bold mb-4 text-white/30">Módulos Futuros</h3>
-                    <p class="text-gray-600 text-sm font-light font-mono">Buscando novas arquiteturas. <br> Aguarde a próxima missão.</p>
+                    <p class="text-gray-600 text-sm font-light font-mono leading-relaxed">
+                        Buscando novas arquiteturas. <br>
+                        Aguarde projetos futuros.
+                    </p>
                 </div>
             </div>
         </div>
@@ -166,7 +174,7 @@
     </section>
 
     <div class="audio-hud fixed bottom-10 right-10 z-[1000]">
-        <div id="soundToggle" class="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-xl">
+        <div id="soundToggle" class="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-xl hover:border-white/40">
             <i id="soundIcon" class="devicon-ssh-plain text-xl opacity-30"></i>
         </div>
     </div>
@@ -175,7 +183,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script>
         AOS.init({ duration: 1500, once: true });
-        const glow = document.getElementById('cursor-glow'), dot = document.getElementById('cursor-dot'), img = document.getElementById('profileImg');
+        const glow = document.getElementById('cursor-glow'), dot = document.getElementById('cursor-dot');
         const wrapper = document.getElementById('projectsWrapper'), slider = document.getElementById('projectSlider');
         let currentScroll = 0, targetVelocity = 0, currentVelocity = 0;
         wrapper.addEventListener('mousemove', (e) => {
@@ -194,7 +202,6 @@
             const x = e.clientX, y = e.clientY;
             glow.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
             dot.style.left = x + 'px'; dot.style.top = y + 'px';
-            img.style.transform = `rotateY(${(window.innerWidth / 2 - x) / 30}deg) rotateX(${(window.innerHeight / 2 - y) / 30}deg)`;
             document.querySelectorAll('.card').forEach(card => {
                 const rect = card.getBoundingClientRect(), cardX = x - rect.left - rect.width/2, cardY = y - rect.top - rect.height/2;
                 card.style.setProperty('--mouse-x', `${x - rect.left}px`); card.style.setProperty('--mouse-y', `${y - rect.top}px`);
@@ -207,7 +214,7 @@
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
         };
-        const ambient = new Howl({ src: ["{{ url_for('static', filename='style/ambient.mp3') }}"], loop: true, volume: 0.1, html5: true });
+        const ambient = new Howl({ src: ["{{ url_for('static', filename='style/ambient.mp3') }}"], loop: true, volume: 0.5, html5: true });
         const hoverSfx = new Howl({ src: ["{{ url_for('static', filename='style/hover.mp3') }}"], volume: 0.1 });
         const clickSfx = new Howl({ src: ["{{ url_for('static', filename='style/click.mp3') }}"], volume: 0.4 });
         let audioOn = false;
